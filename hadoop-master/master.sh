@@ -7,4 +7,6 @@ su hadoop -c "ssh-keyscan  hadoop-slave-2 >> ~/.ssh/known_hosts"
 su hadoop -c "sshpass -p qwe123 ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop@hadoop-master -p 22"
 su hadoop -c "sshpass -p qwe123 ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop@hadoop-slave-1 -p 22"
 su hadoop -c "sshpass -p qwe123 ssh-copy-id -i ~/.ssh/id_rsa.pub hadoop@hadoop-slave-2 -p 22"
+su hadoop -c "scp -r /opt/hadoop/ hadoop-slave-1:/opt/hadoop"
+su hadoop -c "scp -r /opt/hadoop/ hadoop-slave-2:/opt/hadoop"
 exit

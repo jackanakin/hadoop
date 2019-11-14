@@ -10,24 +10,11 @@ RUN apt-get install sshpass -y
 RUN useradd -m hadoop
 RUN echo 'hadoop:qwe123' | chpasswd
 
-#COPY java /usr/local/java
 COPY hadoop /opt/hadoop
-
-#COPY java-setup.sh /opt/java-setup.sh
-#RUN chmod +x /opt/java-setup.sh
-#RUN /opt/java-setup.sh
-
-RUN chown -R hadoop /opt/hadoop
-
-
-#RUN ssh -o StrictHostKeyChecking=no -l "hadoop" "hadoop-master"
-
-#COPY ssh-setup.sh .
-#RUN chmod +x /opt/hadoop/ssh-setup.sh
-#RUN /opt/hadoop/ssh-setup.sh
-
-#COPY hadoop-key.pub .
+COPY conf /opt/hadoop/etc/hadoop
+RUN chown -R hadoop /opt/
 
 COPY master.sh /opt/master.sh
+COPY start-hadoop.sh /opt/start-hadoop.sh
 RUN chmod +x /opt/master.sh
-ENTRYPOINT /opt/master.sh && bash
+ENTRYPOINT bash

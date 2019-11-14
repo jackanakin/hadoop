@@ -9,6 +9,7 @@ RUN apt-get install sshpass -y
 
 RUN useradd -m hadoop
 RUN echo 'hadoop:qwe123' | chpasswd
+RUN chown -R hadoop /opt/
 
 COPY slave.sh /opt/slave.sh
 RUN chmod +x /opt/slave.sh
