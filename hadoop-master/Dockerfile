@@ -17,4 +17,5 @@ RUN chown -R hadoop /opt/
 COPY master.sh /opt/master.sh
 COPY start-hadoop.sh /opt/start-hadoop.sh
 RUN chmod +x /opt/master.sh
+RUN chmod +x /opt/start-hadoop.sh
 ENTRYPOINT bash
