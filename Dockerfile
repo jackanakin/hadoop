@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:18.04
 
 LABEL maintainer="Jardel Kuhn <jardelkuhn@gmail.com.br>"
 
@@ -9,25 +9,16 @@ RUN apt-get install sshpass -y
 
 RUN useradd -m hadoop
 RUN echo 'hadoop:qwe123' | chpasswd
+RUN mkdir ~/.ssh/
 
-#COPY java /usr/local/java
-COPY hadoop /opt/hadoop
-
-#COPY java-setup.sh /opt/java-setup.sh
-#RUN chmod +x /opt/java-setup.sh
-#RUN /opt/java-setup.sh
-
-RUN chown -R hadoop /opt/hadoop
-
-
-#RUN ssh -o StrictHostKeyChecking=no -l "hadoop" "hadoop-slave-1"
-
-#COPY ssh-setup.sh .
-#RUN chmod +x /opt/hadoop/ssh-setup.sh
-#RUN /opt/hadoop/ssh-setup.sh
-
-#COPY hadoop-key.pub .
+WORKDIR /opt/
+RUN wget http://mirror.nbtelecom.com.br/apache/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz
+RUN tar -xvzf hadoop-3.2.1.tar.gz
+RUN rm hadoop-3.2.1.tar.gz
+RUN mv hadoop-3.2.1 hadoop
+RUN chown -R hadoop /opt/
 
 COPY master.sh /opt/master.sh
 RUN chmod +x /opt/master.sh
-ENTRYPOINT /opt/master.sh && bash
+
+ENTRYPOINT service ssh start & bash
