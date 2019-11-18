@@ -12,7 +12,7 @@ docker run -it -d --name hadoop-slave-3 -v /home/jardel/Documents/hadoop/data:/h
 ## iniciar master
 docker run -it -d --name hadoop-master -v /home/jardel/Documents/hadoop/data:/home/hadoop/data -v /home/jardel/Documents/hadoop/cfg:/opt/hadoop/etc/hadoop/ --memory="1024m" --network=hadoop_network --hostname hadoop-master -p 9864:9864 -p 9000:9000 -p 8042:8042 -p 50060:50060 -p 8021:8021 -p 50030:50030 -p 9870:9870 -p 8088:8088 -p 50070:50070 jackanakin:hadoop
 
-## Baixar, extrair e mover para data/london-outcomes.csv
+## Baixar, extrair e mover para data/csv/london-outcomes.csv
 https://www.kaggle.com/sohier/london-police-records/data#london-stop-and-search.csv
 
 ## Acessar o container
